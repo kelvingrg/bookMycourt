@@ -1,24 +1,44 @@
-import logo from './logo.svg';
+
 import './App.css';
+import AddNewCourt from './Pages/AddNewCourt';
+import CourtUserViewPage from './Pages/CourtUserViewPage';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css';
+import Mybookings from './Pages/Mybookings';
+import { AdminAuth, LoginAuth, UserAuth } from './Authorization/authorization';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+<BrowserRouter>
+<Routes>
+<Route element={<LoginAuth/>}>
+<Route path='/' element={<Login/>}/>
+</Route>
+
+
+{/* user route */}
+<Route element={<UserAuth/>}>
+<Route path='/home' element={<Home/>}/>
+<Route path='/courtUserViewPage/:id' element={<CourtUserViewPage/>}/>
+<Route path='/mybookings' element={<Mybookings/>}/>
+</Route>
+
+
+{/* // adminRoute */}
+<Route element={<AdminAuth/>}>
+<Route path='/addNewCourt' element={<AddNewCourt/>}/>
+</Route>
+</Routes>
+
+</BrowserRouter>
+
+</>
+
+
+
   );
 }
 
