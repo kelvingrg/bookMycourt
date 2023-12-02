@@ -13,11 +13,11 @@ getAllcourstData()
   },[])
   const getAllcourstData =()=>{
     AxiosInstance.get('/users/getAllcourstData').then((response)=>{
-      setCourtData(response.data)
+      setCourtData(response?.data)
 
     })
     .catch(err=>{
-      if(err.response.data.message==='unauthorized user'){
+      if(err.response?.data.message==='unauthorized user'){
       localStorage.clear();
       navigate('/')}
     })
